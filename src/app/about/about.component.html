@@ -1,0 +1,30 @@
+<h2>name: {{newModel.getName()}}</h2>
+<h3>age: {{newModel.getAge()}}</h3>
+
+<div>
+    <input #itemValue type="text">
+    <button (click)="addItem(itemValue.value); itemValue.value = ''">add</button>
+</div>
+
+<div *ngIf="checkAll">
+    <tr *ngFor = "let item of items, let i = index">
+        <div *ngIf="item.getCheck()">
+            <td>{{item.getName()}}</td>
+            <input type="checkbox" (click)="item.changeCheck();" [checked]="item.getCheck()">
+        </div>
+
+    </tr> 
+    <button (click)="changeAllCheck()">show all</button>
+</div>
+<div *ngIf="!checkAll">
+    <tr *ngFor = "let item of items, let i = index">
+        <div>
+            <td>{{item.getName()}}</td>
+            <input type="checkbox" (click)="item.changeCheck();" [checked]="item.getCheck()">
+        </div>
+    </tr> 
+    <button (click)="changeAllCheck()">show only valid</button>
+
+</div>
+
+
